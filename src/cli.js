@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import CliController from "./controllers/CliController.js";
 import { Command } from 'commander';
 const program = new Command();
