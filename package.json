@@ -1,0 +1,37 @@
+{
+  "name": "ethereum-interface-generator",
+  "version": "0.1",
+  "description": "Generate a customizable interface for interacting with Ethereum smart contracts.",
+  "homepage": "https://github.com/danielefavi/ethereum-interface-generator#readme",
+  "keywords": [
+    "ethereum",
+    "blockchain",
+    "smart contracts",
+    "ui",
+    "interface",
+    "generator"
+  ],
+  "license": "MIT",
+  "author": "Daniele Favi <info@danielefavi.com> (http://www.danielefavi.com)",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": "git://github.com/danielefavi/ethereum-interface-generator.git",
+  "type": "module",
+  "bin": {
+    "eth-ui-gen": "src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "start-dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "commander": "^9.3.0",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "uglify-js": "^3.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
