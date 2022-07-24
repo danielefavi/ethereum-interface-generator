@@ -1,5 +1,5 @@
 {
-  "name": "@danielefavi/ethereum-interface-generator",
+  "name": "ethereum-interface-generator",
   "version": "1.0.0",
   "description": "Generate a customizable interface for interacting with Ethereum smart contracts.",
   "homepage": "https://github.com/danielefavi/ethereum-interface-generator#readme",
@@ -13,9 +13,6 @@
   ],
   "license": "MIT",
   "author": "Daniele Favi <info@danielefavi.com> (http://www.danielefavi.com)",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "repository": "git://github.com/danielefavi/ethereum-interface-generator.git",
   "type": "module",
   "bin": {
