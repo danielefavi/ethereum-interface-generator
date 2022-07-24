@@ -10,7 +10,7 @@ The interface is made with **bootstrap** and **vanilla Javascript**.
 
 With this NPM command you can export the interface or run the interface automatically on the server.
 
-<p style="text-align:center;"><img src="https://raw.githubusercontent.com/danielefavi/ethereum-interface-generator/main/exported-ui-sample.png" width="60%" height="60%" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/danielefavi/ethereum-interface-generator/main/exported-ui-sample.png" width="60%" height="60%" /></p>
 
 ---
 
