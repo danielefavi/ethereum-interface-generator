@@ -14,7 +14,7 @@
   "license": "MIT",
   "author": "Daniele Favi <info@danielefavi.com> (http://www.danielefavi.com)",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@OWNER"
+    "registry": "https://npm.pkg.github.com/@danielefavi"
   },
   "repository": "git://github.com/danielefavi/ethereum-interface-generator.git",
   "type": "module",
