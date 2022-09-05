@@ -1,6 +1,6 @@
 {
   "name": "ethereum-interface-generator",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "Generate a customizable interface for interacting with Ethereum smart contracts.",
   "homepage": "https://github.com/danielefavi/ethereum-interface-generator#readme",
   "keywords": [
