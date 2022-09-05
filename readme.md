@@ -67,12 +67,10 @@ eth-ui-gen export -c /../dapp/build/contracts/ -t /home/dan/Desktop/smart-contra
 
 # More information
 
-Please find more info at
-
-<p align="center">[https://www.danielefavi.com/blog/ethereum-smart-contracts-gui-generator/](https://www.danielefavi.com/blog/ethereum-smart-contracts-gui-generator/)</p>
+Please find more info at [https://www.danielefavi.com/blog/ethereum-smart-contracts-gui-generator/](https://www.danielefavi.com/blog/ethereum-smart-contracts-gui-generator/)
 
 ---
 
 ## The GUI explained
 
-<p align="center"><img src="https://raw.githubusercontent.com/danielefavi/ethereum-interface-generator/main/.github/images/ethereum-gui-generator-walk-through.png" width="60%" height="60%" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/danielefavi/ethereum-interface-generator/main/.github/images/ethereum-gui-generator-walk-through.png" width="100%" /></p>
