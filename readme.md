@@ -1,7 +1,7 @@
 Ethereum Smart Contracts Interface Generator
 ============================================
 
-NPM command that generates an interface for interacting with the **Ethereum smart contracts**.
+NPM command that generates an interface from ABIs to interact with the **Ethereum smart contracts**.
 
 What you need is the compiled smart contract ABIs.
 
@@ -62,5 +62,17 @@ Note: if you run `eth-ui-gen export` without specifying `-c` then make sure you 
 The command below builds the UI using the smart contract ABIs found in the folder `/../dapp/build/contracts/` and it exports the files to the folder `/home/dan/Desktop/smart-contracts-ui/`.
 
 ```sh
-eth-ui-gen serve -c /../dapp/build/contracts/ -t /home/dan/Desktop/smart-contracts-ui/
+eth-ui-gen export -c /../dapp/build/contracts/ -t /home/dan/Desktop/smart-contracts-ui/
 ```
+
+# More information
+
+Please find more info at
+
+<p align="center">[https://www.danielefavi.com/blog/ethereum-smart-contracts-gui-generator/](https://www.danielefavi.com/blog/ethereum-smart-contracts-gui-generator/)</p>
+
+---
+
+## The GUI explained
+
+<p align="center"><img src="https://raw.githubusercontent.com/danielefavi/ethereum-interface-generator/main/.github/images/ethereum-gui-generator-walk-through.png" width="60%" height="60%" /></p>
