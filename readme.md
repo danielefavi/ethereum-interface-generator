@@ -3,6 +3,8 @@ Ethereum Smart Contracts Interface Generator
 
 NPM command that generates an interface from ABIs to interact with the **Ethereum smart contracts**.
 
+> **IMPORTANT: this package is still under development!**
+
 What you need is the compiled smart contract ABIs.
 
 The interface is build with **bootstrap** and **vanilla Javascript** and it is **easily customizable**.

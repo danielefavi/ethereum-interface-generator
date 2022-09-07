@@ -818,15 +818,15 @@ class EthereumExplorer {
     /**
      * Get the basic transaction data.
      *
-     * @param   {string}  form     The users's wallet address.
+     * @param   {string}  from     The users's wallet address.
      * @param   {string}  to       The destination address.
      * @param   {Object}  options  The eventual default options.
      *
      * @return  {Object}           The transaction data.
      */
-    async getTransactionData(form, to, options={}) {
+    async getTransactionData(from, to, options={}) {
         return { from, to, 
-            nonce: options.nonce || await this.web3.eth.getTransactionCount(form, 'pending'),
+            nonce: options.nonce || await this.web3.eth.getTransactionCount(from, 'pending'),
             gasPrice: options.gasPrice || await this.getGasPrice(false),
             gasLimit: options.gasLimit || await this.getGasLimit(false),
         }
