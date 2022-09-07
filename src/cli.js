@@ -7,8 +7,8 @@ const program = new Command();
 // setting the general information for the HELP
 program
     .name('ethereum-interface-generator')
-    .description('Smart contract interface generator for Ethereum')
-    .version('1.0.0');
+    .description('Smart contract GUI generator for Ethereum')
+    .version('1.0.6');
 
 // defining the SERVE command
 program.command('serve')
