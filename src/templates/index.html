@@ -73,7 +73,23 @@
     </div>
 
     <div class="card text-dark bg-light mb-5 event-console">
-        <div class="card-header">Events</div>
+        <div class="card-header d-flex justify-content-between">
+            <span>Events</span>
+            <div class="row">
+                <div class="col-auto">
+                    <select class="form-control form-control-sm" id="events-load-criteria">
+                        <option value="load-from-block">Load from block number</option>
+                        <option value="load-from-the-last-blocks" selected>Load from the last # blocks</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <input class="form-control form-control-sm" type="text" id="events-load-from" />
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-primary btn-sm" id="loadBlockchainEvents">Load</button>
+                </div>
+            </div>
+        </div>
         <div class="card-body">
             <pre id="events-console" style="max-height: 500px;"></pre>
         </div>

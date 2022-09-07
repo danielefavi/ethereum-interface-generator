@@ -117,7 +117,8 @@ function initUi() {
     }
 
     // initializing the blockchain events to show on the console
-    initEvents();
+    initSmartContractEvents();
+    document.getElementById('loadBlockchainEvents').addEventListener('click', initSmartContractEvents);
     
     // initializing the bootstrap CSS elements on the tab navigator (otherwise when you click on a
     // tab element it wont work).
@@ -157,10 +158,60 @@ function getUserPrivateKey() {
 /**
  * Showing all the blockchain events into the console.
  */
-function initEvents() {
+async function initSmartContractEvents() {
+    var criteria = document.getElementById("events-load-criteria").value;
+    var from = document.getElementById("events-load-from").value;
+    
+    UI.setInnerHtml('events-console', '');
+
+    if (typeof from == 'string' && !from.length) {
+        document.getElementById("events-load-from").value = from = 50;
+
+        const options = Array.from(document.getElementById("events-load-criteria").options);
+        const optionToSelect = options.find(item => item.text === 'load-from-the-last-blocks');
+        if (optionToSelect) optionToSelect.selected = true;
+    } else if (! /^\d+$/.test(from)) {
+        UI.eventsConsoleError('Number not valid!');
+        return;
+    }
+
+    if (criteria == 'load-from-the-last-blocks') {
+        await loadEventsFromLatestBlocks(from);
+        return;
+    }
+    
+    if (from < 0) from = 0;
+    loadEventsFromSmartContracts(from);
+}
+
+/**
+ * It loads the events from the latest X blocks (passed as parameter).
+ *
+ * @param   {integer}  fromBlockNumber      The number of latest blocks to load the events.
+ */
+async function loadEventsFromLatestBlocks(fromBlockNumber) {
+    var blockNumber = await window.ethExp.getBlockNumber();
+    var from = blockNumber - fromBlockNumber;
+
+    if (from < 0) {
+        UI.eventsConsole(`The blockchain has ${blockNumber} blocks. Loading the events from the block 0.`);
+        from = 0;
+    } else {
+        UI.eventsConsole('Loading the events from the latest ' + fromBlockNumber + ' blocks');
+    }
+
+    loadEventsFromSmartContracts(from);
+}
+
+/**
+ * Load the events of all smart contracts from the given block number.
+ *
+ * @param   {integer}  fromBlockNumber      The starting block number the events has to be loaded.
+ */
+function loadEventsFromSmartContracts(fromBlockNumber) {
     for (let contractName in window.ethExp.contractDetails) {
         window.ethExp.contract(contractName).events.allEvents({
-            fromBlock: 0
+            fromBlock: fromBlockNumber
         }, function(error, event) { 
             UI.eventsConsoleError(event);
         })
