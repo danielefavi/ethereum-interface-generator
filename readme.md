@@ -5,13 +5,11 @@ NPM command that generates an interface from ABIs to interact with the **Ethereu
 
 > **IMPORTANT: this package is still under development!**
 
-What you need is the compiled smart contract ABIs.
-
-The interface is build with **bootstrap** and **vanilla Javascript** and it is **easily customizable**.
+The generated interface is easily customizable: the GUI is built with **bootstrap** and **vanilla javascript** (and of course Web3.js 🙂).
 
 With this NPM command you can export the interface or run the interface automatically on the server.
 
-<p align="center"><img src="https://raw.githubusercontent.com/danielefavi/ethereum-interface-generator/main/.github/images/exported-ui-sample.png" width="60%" height="60%" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/danielefavi/ethereum-interface-generator/main/.github/images/exported-ui-sample.png" width="60%" height="70%" /></p>
 
 ---
 
