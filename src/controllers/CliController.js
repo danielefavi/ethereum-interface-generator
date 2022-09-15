@@ -3,7 +3,6 @@ import child_process from 'child_process';
 import fs from 'fs';
 import FsHelper from '../libs/FsHelper.js';
 import UglifyJS from 'uglify-js';
-import { exit } from 'process';
 
 /**
  * This controller handles the requests coming from the Command Line Interface.
@@ -69,7 +68,6 @@ export default class CliController {
         const packageJson = JSON.parse(fs.readFileSync(FsHelper.dirname() + '/../../package.json', 'utf8'));
 
         console.info(packageJson.version);
-        exit(1);
     }
 
     /**
