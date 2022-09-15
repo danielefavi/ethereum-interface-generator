@@ -8,7 +8,7 @@ const program = new Command();
 program
     .name('ethereum-interface-generator')
     .description('Smart contract GUI generator for Ethereum')
-    .version('1.0.7');
+    .option('-V, --version', 'Show the version of the package', (new CliController).version())
 
 // defining the SERVE command
 program.command('serve')
