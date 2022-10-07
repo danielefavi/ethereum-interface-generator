@@ -16,7 +16,7 @@ export default class AbiLoader {
      */
     getAbiFromFolder(directory) {
         if (! fs.existsSync(directory)) {
-            throw new Error('The directory ' + directory + ' does not exist.');
+            global.logger.fatalError('The directory ' + directory + ' does not exist.');
         }
 
         var jsons = this.getJsonFromFolder(directory);
