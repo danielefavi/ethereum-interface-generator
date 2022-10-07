@@ -65,6 +65,49 @@ The command below builds the UI using the smart contract ABIs found in the folde
 eth-ui-gen export -c /../dapp/build/contracts/ -t /home/dan/Desktop/smart-contracts-ui/
 ```
 
+## Important notes
+
+All JSONs from the compiled smart contracts must have the following keys:
+- `contractName`: the name of the contract.
+- `abi`: ABI of the compiled smart contract. 
+- `networks`: list of networks where the contract has been deployed.
+
+If the a provided JSON file from the command does not have one of those key then you will get an error.
+
+Please find below an example:
+
+```json
+{
+    "contractName": "MyAwesomeContract",
+    "abi": [
+        {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "name",
+                "type": "string"
+            }
+        ],
+        "name": "storeName",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function",
+        "payable": true
+        },
+
+        ...
+
+    ],
+    "networks": {
+        "4747": {
+            "events": {},
+            "links": {},
+            "address": "0xba607E0A4eED20239C4f2237688e660da8262e3E",
+            "transactionHash": "0x9bc44b20869b2ed0bf62788da9fe65fe847a5cf37225bc5e442c4d4319e10f29"
+        }
+    }
+```
+
 # More information
 
 Please find more info at [https://www.danielefavi.com/blog/ethereum-smart-contracts-gui-generator/](https://www.danielefavi.com/blog/ethereum-smart-contracts-gui-generator/)

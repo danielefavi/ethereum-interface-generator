@@ -20,26 +20,56 @@ export default class AbiLoader {
         }
 
         var jsons = this.getJsonFromFolder(directory);
-    
+
         var abi = [];
         
         for (var json of jsons) {
-            if (
-                typeof json.contractName != 'undefined' &&
-                typeof json.abi != 'undefined' &&
-                typeof json.networks != 'undefined'
-            ) {
+            if (this.validateJsonAbiFormat(json)) {
                 abi.push({
                     contractName: json.contractName,
                     abi: json.abi,
                     networks: json.networks,
                 });
+            } else {
+                throw new Error('The provided JSON is not valid.');
+                // console.error('\x1b[31m%s\x1b[0m', 'The provided JSON is not valid.');
+                // process.exit();
             }
         }
     
         return abi.sort((a,b) => this.sortByProperty(a, b, 'contractName'));
     }
     
+    /**
+     * Check if the JSON of the compiled smart contract output has the required
+     * values.
+     * 
+     * @param {Object} json 
+     * @return {boolean}
+     */
+    validateJsonAbiFormat(json) {
+        if (
+            typeof json != 'object' ||
+            typeof json.contractName == 'undefined' ||
+            typeof json.abi == 'undefined' ||
+            typeof json.networks != 'object'
+        ) {
+            return false;
+        }
+
+        for (let netId in json.networks) {
+            // the network ID must have only digits
+            if (! /^\d+$/.test(netId)) return false;
+
+            // checking the address is valid: string 42 chars long, starting with 0x and 
+            // having 0-9 and a-f afterward
+            if (typeof json.networks[netId].address != 'string') return false;
+            if (! /^(0x)?[0-9a-fA-F]{40}$/.test(json.networks[netId].address)) return false;
+        }
+
+        return true;
+    }
+
     /**
      * Store the data into a file.
      *
