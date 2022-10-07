@@ -85,7 +85,7 @@ export default class CliController {
         if (minify) {
             var result = UglifyJS.minify(script);
             if (result.error) {
-                throw new Error('Error occurred on minifying the script: ' + result.error);
+                global.logger.fatalError('Error occurred on minifying the script: ' + result.error);
             }
             script = result.code;
         }

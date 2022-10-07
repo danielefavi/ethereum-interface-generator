@@ -31,9 +31,7 @@ export default class AbiLoader {
                     networks: json.networks,
                 });
             } else {
-                throw new Error('The provided JSON is not valid.');
-                // console.error('\x1b[31m%s\x1b[0m', 'The provided JSON is not valid.');
-                // process.exit();
+                global.logger.fatalError('The provided JSON is not valid.');
             }
         }
     

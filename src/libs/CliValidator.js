@@ -13,10 +13,10 @@ export default class CliValidator {
      * @return  {Integer}           The validated port.
      */
     validatePort(port) {
-        if (!port || !port.length) throw new Error('The port is required.');
+        if (!port || !port.length) global.logger.fatalError('The port is required.');
         
         if (! /^\d+$/.test(port)) {
-            throw new Error('The port must be an integer greater than 0.');
+            global.logger.fatalError('The port must be an integer greater than 0.');
         }
 
         return port;
@@ -30,10 +30,10 @@ export default class CliValidator {
      * @return  {string}                  The path of the directory validated.
      */
     validateDir(path, msgElement='directory name') {
-        if (!path || !path.length) throw new Error(`The ${msgElement} is required.`);
+        if (!path || !path.length) global.logger.fatalError(`The ${msgElement} is required.`);
 
         if (!fs.existsSync(path)) {
-            throw new Error(`The folder "${path}" does not exist.`);
+            global.logger.fatalError(`The folder "${path}" does not exist.`);
         }
 
         return path;
@@ -54,7 +54,7 @@ export default class CliValidator {
         const abi = (new AbiLoader).getAbiFromFolder(path);
 
         if (! abi.length) {
-            throw new Error(`No ABI found in the folder "${path}".`);
+            global.logger.fatalError(`No ABI found in the folder "${path}".`);
         }
 
         return abi;

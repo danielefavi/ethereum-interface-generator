@@ -2,7 +2,10 @@
 
 import CliController from "./controllers/CliController.js";
 import { Command } from 'commander';
+import Logger from "./libs/Logger.js";
+
 const program = new Command();
+global.logger = new Logger;
 
 // setting the general information for the HELP
 program
