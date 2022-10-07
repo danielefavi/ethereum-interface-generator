@@ -2,6 +2,7 @@ import CliValidator from '../libs/CliValidator.js';
 import child_process from 'child_process';
 import fs from 'fs';
 import FsHelper from '../libs/FsHelper.js';
+import AbiHelper from '../libs/AbiHelper.js';
 import UglifyJS from 'uglify-js';
 
 /**
@@ -19,7 +20,7 @@ export default class CliController {
         const validator = new CliValidator;
 
         const port = argv.port ? validator.validatePort(argv.port) : null; // the validation on the port is not done if the argument is not specified
-        const abi = validator.validateAbiDir(argv.contracts || '.'); // the validation on the contract's directory is always sone
+        const abi = this.getCompiledContractJson(argv.contracts || '.'); // the validation on the contract's directory is always sone
 
         const distTempDir = FsHelper.createTempDir().replace(/\/+$/, '');
 
@@ -48,7 +49,7 @@ export default class CliController {
             var targetDir = '.';
         }
 
-        const abi = validator.validateAbiDir(argv.contracts || '.'); // the validation on the contract's directory is always sone
+        const abi = this.getCompiledContractJson(argv.contracts || '.'); // the validation on the contract's directory is always sone
 
         if (targetDir.substring(targetDir.length-1) != '/' && targetDir.substring(targetDir.length-1) != '\\') {
             targetDir += '/';
@@ -58,7 +59,7 @@ export default class CliController {
 
         FsHelper.writeFile(targetDir + 'index.html', this.buildUI(abi, argv.minify));
 
-        console.info(`\nExported successfully to the folder "${targetDir}"\n`);
+        global.logger.success(`Exported successfully to the folder "${targetDir}"`);
     }
 
     /**
@@ -154,6 +155,45 @@ export default class CliController {
         FsHelper.copyFile('../../public/bootstrap-5.0.2.min.css.map', targetDir + 'public/bootstrap-5.0.2.min.css.map');
         FsHelper.copyFile('../../public/web3-1.7.3.min.js', targetDir + 'public/web3-1.7.3.min.js');
         FsHelper.copyFile('../../public/web3-1.7.3.min.js.map', targetDir + 'public/web3-1.7.3.min.js.map');
+    }
+
+    /**
+     * Validates the directory containing the compiled ABI: if the directory path
+     * is valid and the ABI are found in the given directory then it returns an
+     * array with all the ABIs.
+     *
+     * @param   {string}  path      The directory where to find the built smart contracts.
+     *
+     * @return  {Array}              List of all ABIs.
+     */
+    getCompiledContractJson(path) {
+        const validator = new CliValidator;
+        validator.validateDir(path);
+        const abiHelper = new AbiHelper;
+
+        var jsons = abiHelper.getJsonFromFolder(path);
+
+        var abi = [];
+        
+        for (var json of jsons) {
+            if (validator.validateJsonAbiFormat(json)) {
+                abi.push({
+                    contractName: json.contractName,
+                    abi: json.abi,
+                    networks: json.networks,
+                });
+            } else {
+                global.logger.fatalError('The provided JSON is not valid.');
+            }
+        }
+    
+        abi.sort((a,b) => abiHelper.sortByProperty(a, b, 'contractName'));
+
+        if (! abi.length) {
+            global.logger.fatalError(`No ABI found in the folder "${path}".`);
+        }
+
+        return abi;
     }
 
 }

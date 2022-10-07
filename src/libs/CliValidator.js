@@ -1,4 +1,3 @@
-import AbiLoader from './AbiLoader.js';
 import fs from 'fs';
 
 /**
@@ -40,24 +39,33 @@ export default class CliValidator {
     }
 
     /**
-     * Validates the directory containing the compiled ABI: if the directory path
-     * is valid and the ABI are found in the given directory then it returns an
-     * array with all the ABIs.
-     *
-     * @param   {string}  directory  The directory where to find the built smart contracts.
-     *
-     * @return  {Array}              List of all ABIs.
+     * Check if the JSON of the compiled smart contract output has the required
+     * values.
+     * 
+     * @param {Object} json 
+     * @return {boolean}
      */
-    validateAbiDir(path) {
-        this.validateDir(path);
-
-        const abi = (new AbiLoader).getAbiFromFolder(path);
-
-        if (! abi.length) {
-            global.logger.fatalError(`No ABI found in the folder "${path}".`);
+     validateJsonAbiFormat(json) {
+        if (
+            typeof json != 'object' ||
+            typeof json.contractName == 'undefined' ||
+            typeof json.abi == 'undefined' ||
+            typeof json.networks != 'object'
+        ) {
+            return false;
         }
 
-        return abi;
+        for (let netId in json.networks) {
+            // the network ID must have only digits
+            if (! /^\d+$/.test(netId)) return false;
+
+            // checking the address is valid: string 42 chars long, starting with 0x and 
+            // having 0-9 and a-f afterward
+            if (typeof json.networks[netId].address != 'string') return false;
+            if (! /^(0x)?[0-9a-fA-F]{40}$/.test(json.networks[netId].address)) return false;
+        }
+
+        return true;
     }
 
 }
