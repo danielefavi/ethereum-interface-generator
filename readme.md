@@ -80,18 +80,18 @@ Below an example of how the JSON file should look like:
     "contractName": "MyAwesomeContract",
     "abi": [
         {
-        "inputs": [
-            {
-                "internalType": "string",
-                "name": "name",
-                "type": "string"
-            }
-        ],
-        "name": "storeName",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function",
-        "payable": true
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "name",
+                    "type": "string"
+                }
+            ],
+            "name": "storeName",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function",
+            "payable": true
         },
 
         ...
@@ -99,10 +99,7 @@ Below an example of how the JSON file should look like:
     ],
     "networks": {
         "4747": {
-            "events": {},
-            "links": {},
-            "address": "0xba607E0A4eED20239C4f2237688e660da8262e3E",
-            "transactionHash": "0x9bc44b20869b2ed0bf62788da9fe65fe847a5cf37225bc5e442c4d4319e10f29"
+            "address": "0xba607E0A4eED20239C4f2237688e660da8262e3E"
         }
     }
 ```
