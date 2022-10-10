@@ -65,16 +65,15 @@ The command below builds the UI using the smart contract ABIs found in the folde
 eth-ui-gen export -c /../dapp/build/contracts/ -t /home/dan/Desktop/smart-contracts-ui/
 ```
 
-## Important notes
+## Smart Contract JSON Format
 
-All JSONs from the compiled smart contracts must have the following keys:
+The JSON files of the **compiled** and **deployed** smart contracts (that you give to the command) must contain the following values:
+
 - `contractName`: the name of the contract.
 - `abi`: ABI of the compiled smart contract. 
 - `networks`: list of networks where the contract has been deployed.
 
-If the a provided JSON file from the command does not have one of those key then you will get an error.
-
-Please find below an example:
+Below an example of how the JSON file should look like:
 
 ```json
 {

@@ -183,7 +183,7 @@ export default class CliController {
                     networks: json.networks,
                 });
             } else {
-                global.logger.fatalError('The provided JSON is not valid.');
+                global.logger.fatalError('The provided JSON is not valid. Please check https://www.npmjs.com/package/ethereum-interface-generator#smart-contract-json-format');
             }
         }
     
